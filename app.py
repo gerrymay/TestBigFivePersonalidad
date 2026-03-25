@@ -93,6 +93,12 @@ opn_questions = {
 }
 
 lista_preguntas = [ext_questions, neu_questions,agr_questions,con_questions,opn_questions]
+#Cargamos el modelo de predicción
+with open('kmeans_model_bigfive_gm.pkl', 'rb') as f:
+    kmeans_model = pickle.load(f)
+#Cargamos el scaler
+with open('scaler_st_bigfive_gm.pkl', 'rb') as f:
+    scaler = pickle.load(f)   
 
 # Initialize an empty dictionary to store user responses in session state
 if 'user_responses' not in st.session_state:
@@ -169,3 +175,5 @@ if submitted:
 
     except Exception as e:
         st.error(f"Error al procesar las puntuaciones o el modelo: {e}")
+
+#st.write("Para ejecutar esta aplicación, guarda el código en un archivo .py (ej. `app.py`) y ejecútalo desde la terminal con `streamlit run app.py`.")
