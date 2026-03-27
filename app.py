@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import pickle
 
+[theme]
+backgroundColor = "#F0F0F0"
 st.set_page_config(layout="wide")
 
 st.title("Test de Personalidad Big Five")
@@ -173,13 +175,6 @@ if submitted:
         predicted_cluster = kmeans_model.predict(user_scores_scaled)[0]
         st.write(f"### Perteneces al Cluster: {predicted_cluster}")
         st.write(f"{lista_clusters[predicted_cluster]}")
-
-        # Display cluster description/mean values
-        st.write("#### Valores promedio de los rasgos para tu Cluster:")
-        if 'cluster_means' in globals():
-            st.dataframe(cluster_means.loc[[predicted_cluster]])
-        else:
-            st.write("No hay una descripción detallada disponible para este cluster en este momento. La variable 'cluster_means' no fue encontrada.")
 
     except Exception as e:
         st.error(f"Error al procesar las puntuaciones o el modelo: {e}")
